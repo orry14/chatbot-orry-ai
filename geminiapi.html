@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generative Language API Example</title>
+    <style>
+        /* CSS to make the text field grow vertically */
+        #news-icon {
+            width: 100%;
+            height: 200px; /* Initial height, can be adjusted */
+            resize: vertical; /* Allow vertical resizing */
+        }
+    </style>
+    <script>
+        function generateContent() {
+            var apiKey = 'AIzaSyBcr4v9Av1m53OcTVMq6xQMjjfcAeOGjDc'; // Replace with your actual Google API key
+            var url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=' + apiKey;
+            
+            var requestBody = {
+                contents: [
+                    {
+                        parts: [
+                            {
+                                text: document.getElementById('attachment-icon').value
+                            }
+                        ]
+                    }
+                ]
+            };
+            
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Check if 'candidates' array exists and has at least one candidate
+                if (data.candidates && data.candidates.length > 0) {
+                    var generatedText = data.candidates[0].content.parts[0].text;
+                    document.getElementById('news-icon').value = generatedText; // Set value of text field
+                } else {
+                    document.getElementById('news-icon').value = 'Error: No content generated.';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('news-icon').value = 'Error occurred. Check console for details.';
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Generative Language API Example</h1>
+    <p>Enter text to generate content:</p>
+    <textarea id="attachment-icon" rows="4" cols="50">Explain how AI works</textarea><br><br>
+    <button onclick="generateContent()">Generate Content</button><br><br>
+    <textarea id="news-icon" readonly></textarea>
+</body>
+</html>

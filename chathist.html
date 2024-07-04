@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat History</title>
+  <style>
+    /* CSS styles for the chat history page */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('https://cdn.flames.design/project-media/f87cfe8b-1957-4555-bafa-de89509ba80f/original-9343da48-e1c8-401b-9a98-4d96c928a5b9.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .chat-history-container {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 1000px;
+      width: 90%;
+      text-align: center;
+      margin: 20px;
+    }
+
+    .chat-entry {
+      margin-bottom: 20px;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .chat-entry p {
+      margin-bottom: 5px;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    /* Responsive adjustments */
+    @media screen and (max-width: 600px) {
+      .chat-history-container {
+        width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-history-container">
+    <h1>Chat History</h1>
+    <div id="chatHistory"></div>
+  </div>
+
+  <!-- JavaScript for handling chat history -->
+  <script>
+    // Function to display chat history entries
+    function displayChatHistory() {
+      // Retrieve entries from localStorage
+      const entries = JSON.parse(localStorage.getItem('chatEntries')) || [];
+
+      // Select the chatHistory container
+      const chatHistoryContainer = document.getElementById('chatHistory');
+
+      // Clear previous content
+      chatHistoryContainer.innerHTML = '';
+
+      // Loop through entries and create HTML elements
+      entries.forEach(entry => {
+        const entryElement = document.createElement('div');
+        entryElement.classList.add('chat-entry');
+
+        const timestampElement = document.createElement('p');
+        timestampElement.textContent = `Timestamp: ${entry.timestamp}`;
+
+        const inputTextElement = document.createElement('p');
+        inputTextElement.textContent = `Input Text: ${entry.inputText}`;
+
+        const generatedTextElement = document.createElement('p');
+        generatedTextElement.textContent = `Generated Text: ${entry.generatedText}`;
+
+        entryElement.appendChild(timestampElement);
+        entryElement.appendChild(inputTextElement);
+        entryElement.appendChild(generatedTextElement);
+
+        chatHistoryContainer.appendChild(entryElement);
+      });
+    }
+
+    // Call displayChatHistory on page load
+    window.onload = function() {
+      displayChatHistory();
+    };
+  </script>
+</body>
+</html>

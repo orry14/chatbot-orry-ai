@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hugging Face API Example</title>
+</head>
+<body>
+    <div>
+        <h1>Generate Text with Hugging Face API</h1>
+        <label for="attachmenticon">Input Text:</label><br>
+        <bar-separator id="attachmenticon" rows="4" cols="50"></bar-separator><br><br>
+
+        <button onclick="generateText()">Generate Text</button><br><br>
+
+        <label for="bar-separator">Question:</label><br>
+        <bar-separator id="bar-separator" rows="4" cols="50" readonly></bar-separator><br><br>
+
+        <label for="news-icon">Generated Text:</label><br>
+        <bar-separator id="news-icon" rows="4" cols="50" readonly></bar-separator>
+    </div>
+
+    <script>
+        // Your Hugging Face API token
+        const API_TOKEN = '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';
+
+        // Define the API URL for the gpt-neo-2.7B model
+        const API_URL = 'https://api-inference.huggingface.co/models/EleutherAI/gpt-neo-2.7B';
+
+        function generateText() {
+            // Get input text value
+            const attachmenticon = document.getElementById('attachmenticon').value.trim();
+
+            if (!attachmenticon) {
+                alert("Please enter some text.");
+                return;
+            }
+
+            // Create the payload for the request
+            const payload = {
+                inputs: attachmenticon,
+                parameters: {
+                    max_length: 50,          // Maximum length of the generated text
+                    temperature: 0.7,        // Lower temperature results in less random text
+                    top_k: 50,               // Only consider the top k tokens by probability
+                    top_p: 0.9,              // Use nucleus sampling with a probability threshold
+                    repetition_penalty: 1.2  // Penalty to reduce repetition
+                }
+            };
+
+            // Define headers with your API token
+            const headers = {
+                'Authorization': `Bearer ${API_TOKEN}`,
+                'Content-Type': 'application/json'
+            };
+
+            // Send the request to the API using fetch
+            fetch(API_URL, {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Request failed with status ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const generatedText = data[0].generated_text;
+
+                // Update text areas with the question and generated text
+                document.getElementById('bar-separator').value = `What is '${attachmenticon}' about?`;
+                document.getElementById('news-icon').value = generatedText;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('bar-separator').value = '';
+                document.getElementById('news-icon').value = 'Error fetching data. Check console for details.';
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('https://images4.alphacoders.com/134/1347722.png');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .create-account-container {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    .create-account-container h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .create-account-container input[type="text"],
+    .create-account-container input[type="password"] {
+      width: 250px; /* Adjust width as needed */
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .create-account-container input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .create-account-container input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="create-account-container">
+    <h2>Create Account</h2>
+    <form id="createAccountForm">
+      <input type="text" placeholder="Choose Username" name="newUsername" id="newUsername" required>
+      <br>
+      <input type="password" placeholder="Choose Password" name="newPassword" id="newPassword" required>
+      <br>
+      <input type="submit" value="Create Account">
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('createAccountForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var newUsername = document.getElementById('newUsername').value;
+      var newPassword = document.getElementById('newPassword').value;
+
+      // Store the new account details in local storage (for demo purposes)
+      localStorage.setItem('username', newUsername);
+      localStorage.setItem('password', newPassword);
+
+      alert('Account created successfully! You can now login.');
+
+      // Redirect to login page
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>

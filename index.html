@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1, width=device-width" />
+  <link rel="stylesheet" href="./global.css" />
+  <link rel="stylesheet" href="./index.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarala:wght@400&display=swap" />
+  <style>
+    /* Base styles for elements */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .bar-separator {
+      width: 100%;
+      height: 100px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      resize: none;
+      background-color: #f9f9f9;
+      overflow: hidden;
+    }
+    .attachment-icon-parent {
+      display: flex;
+      flex-direction: column;
+    }
+    .attachment-icon {
+      width: 100%;
+      height: 50px; /* Adjust the height as needed */
+      margin-bottom: 10px; /* Add margin to separate from the button */
+    }
+    .paper-plane-icon {
+      align-self: flex-start;
+    }
+    .news-icon {
+      width: 100%;
+
+      resize: none;
+      overflow: auto;
+    }
+    .action-icons, .action-icons1, .action-icons2, .guide-and-faq-parent {
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.2s ease-out; /* Smooth transform on hover */
+    }
+    .action-icons:hover, .action-icons1:hover, .action-icons2:hover, .guide-and-faq-parent:hover {
+      transform: scale(1.1); /* Scale up on hover */
+    }
+    .profile-content {
+      margin-top: -100px; /* Adjust this value to move the profile content higher */
+      transition: margin-top 0.3s ease; /* Smooth transition effect */
+    }
+    .apple-news-1 {
+      animation: spin 10s linear infinite; /* Adjust animation properties as needed */
+    }
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="macbook-air-22">
+    <header class="top-bar">
+      <div class="apple-news"></div>
+      <div class="apple-news-1-parent">
+        <img class="apple-news-1" loading="lazy" alt="" src="./public/apple-news-1@2x.png" />
+        <div class="title-wrapper">
+          <h2 class="title">orry AI</h2>
+        </div>
+      </div>
+      <div class="tab-row-wrapper">
+        <div class="tab-row">
+          <div class="tab-icons">
+            <a class="tab">Home</a>
+          </div>
+          <div class="tab-icons1">
+            <a class="tab1">Features</a>
+          </div>
+          <div class="tab-icons2">
+            <a class="tab2">About</a>
+          </div>
+          <div class="tab-icons3">
+            <a class="tab3">Contact</a>
+          </div>
+          <div class="textfield">
+            <input class="text" placeholder="Search in site" type="text" />
+            <img class="ic-search-icon" alt="" src="./public/icsearch.svg" />
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="section">
+      <div class="section-inner">
+        <div class="rectangle-parent">
+          <div class="frame-child"></div>
+          <div class="thread-content">
+            <div class="thread-details">
+              <div class="thread-name-content-wrapper">
+                <button class="thread-name-content" onclick="openNewThreadWindow()">
+                  <div class="thread-name-content-child"></div>
+                  <b class="new-thread">+ new thread</b>
+                </button>
+              </div>
+              <div class="user-actions">
+                <div class="action-icons" onclick="handleChatHistory()">
+                  <b class="chat-history">Chat history</b>
+                </div>
+                <div class="action-icons1" onclick="handleSettings()">
+                  <b class="settings">Settings</b>
+                </div>
+                <div class="action-icons2" onclick="handlePersonalise()">
+                  <b class="personalise">Personalise</b>
+                </div>
+                <div class="guide-and-faq-parent" onclick="handleGuideFAQ()">
+                  <b class="guide-and-faq">Guide and FAQ</b>
+                </div>
+                <div class="logout-button-wrapper">
+                  <div class="logout-button">
+                    <div class="log-out-wrapper">
+                      <b class="log-out">Log out</b>
+                    </div>
+                    <button class="logout-button" onclick="handleLogout()">
+                      <img class="tablerlogout-icon" loading="lazy" alt="Logout" src="./public/tablerlogout.svg" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="user-profile">
+                <div class="profile-content">
+                  <div class="profile-content-child"></div>
+                  <div class="profile-details">
+                    <div class="profile-name">
+                      <div class="status-icons">
+                        <div class="status-icons-child"></div>
+                        <img class="status-icons-item" loading="lazy" alt="" src="./public/ellipse-1@2x.png" />
+                      </div>
+                    </div>
+                    <div class="user-name">
+                      <div class="name-content">
+                        <div class="name-details">
+                          <div class="george-wrapper">
+                            <b class="george" id="usernamePlaceholder">George</b>
+                          </div>
+                          <div class="user-status">
+                            <div class="user-status-child"></div>
+                            <div class="free">Free</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="upgrade-button-wrapper">
+                    <button class="upgrade-button">
+                      <div class="upgrade-button-child"></div>
+                      <div class="upgrade-to-pro">Upgrade to Pro</div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bottom-bar">
+            <div class="bottom-bar-child"></div>
+            <div class="bar-content">
+              <textarea class="bar-separator" id="bar-separator" readonly></textarea>
+              <div class="bar-content-inner">
+                <div class="frame-parent">
+                  <div class="rectangle-group">
+                    <div class="frame-item"></div>
+                    <!-- Corrected ID here to match the textarea ID -->
+                    <textarea class="news-icon" id="news-icon" readonly></textarea>
+                  </div>
+                  <div class="apple-news-wrapper">
+                    <img class="apple-news-icon" loading="lazy" alt="" src="./public/apple-news@2x.png" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="frame-group">
+              <div class="frame-container">
+                <div class="apple-news-parent">
+                </div>
+                <div class="apple-news-container">
+                </div>
+              </div>
+              <div class="close-wrapper">
+                <div class="close"></div>
+              </div>
+            </div>
+            <div class="paper-plane-parent">
+              <div class="paper-plane"></div>
+              <div class="input-field-wrapper">
+                <footer class="input-field">
+                  <div class="start-typing-whatever"></div>
+                  <div class="attachment-icon-parent">
+                    <textarea class="attachment-icon" id="attachment-icon"></textarea>
+                    <button type="button" onclick="generateText()">
+                      <img class="paper-plane-icon" alt="" src="./public/paper-plane@2x.png" />
+                    </button>
+                  </div>
+                </footer>
+              </div>
+            </div>
+          </div>
+          <div class="chat-history1">
+            <div class="chat-history-child"></div>
+            <div class="message-list">
+              <div class="message">
+                <div class="message-child"></div>
+                <div class="message-content">
+                  <div class="timestamp-icon-wrapper">
+                    <div class="timestamp-icon"></div>
+                  </div>
+                  <a class="just-now">just now</a>
+                </div>
+                <div class="message-actions">
+                  <div class="action-buttons">
+                    <div class="action-icons-row"></div>
+                    <b class="yes-sure">yes sure !!!</b>
+                  </div>
+                  <div class="action-buttons1">
+                    <div class="action-buttons-child"></div>
+                    <b class="will-see-not">will see not now</b>
+                  </div>
+                </div>
+                <div class="receiver-message">
+                  <div class="receiver-message1">
+                    <div class="hey-can-we">hey can we meet any time soon?</div>
+                  </div>
+                  <div class="sender-details">
+                    <div class="sender-info">
+                      <div class="sender-status">
+                        <div class="sender-status-child"></div>
+                        <img class="sender-status-item" loading="lazy" alt="" src="./public/ellipse-2@2x.png" />
+                      </div>
+                    </div>
+                    <div class="sandra-wrapper">
+                      <h2 class="sandra">sandra</h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="separator-parent">
+                  <img class="separator-icon" loading="lazy" alt="" src="./public/line-5.svg" />
+                  <div class="response-input">
+                    <div class="how-you-want">how you want AI to reply</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="more-message-history">
+              <div class="more-message-history-child"></div>
+              <div class="chat-icons2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section-child"></div>
+      <img class="section-item" alt="" src="./public/vector-200.svg" />
+      <div class="apple-news1"></div>
+      <div class="close1"></div>
+      <div class="microphone"></div>
+      <div class="add-image"></div>
+    </section>
+  </div>
+  <script>
+    // Function to handle logout
+    function handleLogout() {
+        window.location.href = 'logout.html';
+    }
+
+    // Function to handle chat history click
+    function handleChatHistory() {
+        // Navigate to chat history page
+        window.location.href = 'chathist.html';
+    }
+
+    // Function to handle settings click
+    function handleSettings() {
+        console.log('Clicked Settings');
+    }
+
+    // Function to handle personalise click
+    function handlePersonalise() {
+        console.log('Clicked Personalise');
+    }
+
+    // Function to handle guide and FAQ click
+    function handleGuideFAQ() {
+        console.log('Clicked Guide and FAQ');
+    }
+
+    // Function to open new thread window
+    function openNewThreadWindow() {
+        // URL to your new thread page
+        const newThreadURL = 'newthread.html';
+
+        // Open the new window/tab with the specified URL
+        const newWindow = window.open(newThreadURL, '_blank');
+
+        // Focus on the new window/tab (optional)
+        if (newWindow) {
+            newWindow.focus();
+        }
+    }
+
+    // Your Google API key for Gemini API
+    const API_KEY = 'AIzaSyBcr4v9Av1m53OcTVMq6xQMjjfcAeOGjDc';
+
+    // Function to generate text using the Gemini API
+    function generateText() {
+        // Get input text value from attachment-icon textarea
+        const inputText = document.getElementById('attachment-icon').value.trim();
+
+        if (!inputText) {
+            alert("Please enter some text.");
+            return;
+        }
+
+        // Update bar-separator with inputText
+        document.getElementById('bar-separator').value = inputText;
+
+        // Define the API endpoint URL
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
+
+        // Prepare the request body
+        const requestBody = {
+            contents: [
+                {
+                    parts: [
+                        {
+                            text: inputText
+                        }
+                    ]
+                }
+            ]
+        };
+
+        // Send the request to the Gemini API using fetch
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Request failed with status ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Response from Gemini API:', data); // Log the response for debugging
+
+            // Check if 'candidates' array exists and has at least one candidate
+            if (data.candidates && data.candidates.length > 0) {
+                var generatedText = data.candidates[0].content.parts[0].text;
+                document.getElementById('news-icon').value = generatedText; // Set value of news-icon textarea
+                adjustTextareaHeight(document.getElementById('news-icon')); // Adjust textarea height
+            } else {
+                document.getElementById('news-icon').value = 'Error: No content generated.';
+                adjustTextareaHeight(document.getElementById('news-icon')); // Adjust textarea height
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('news-icon').value = 'Error occurred. Check console for details.';
+            adjustTextareaHeight(document.getElementById('news-icon')); // Adjust textarea height
+        });
+    }
+
+    // Function to adjust textarea height dynamically
+    function adjustTextareaHeight(textarea) {
+        textarea.style.height = 'auto';
+        textarea.style.height = `${textarea.scrollHeight}px`;
+    }
+
+    // Add event listener for input to adjust news-icon textarea height
+    document.getElementById('news-icon').addEventListener('input', function () {
+        adjustTextareaHeight(this);
+    });
+
+    // Add event listener for Enter key press in attachment-icon textarea
+    document.getElementById('attachment-icon').addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent the default action (new line in textarea)
+            generateText();
+        }
+    });
+
+    // Function to update the displayed username
+    function updateUsername() {
+        const username = document.getElementById('usernameInput').value.trim(); // Assuming input field has id 'usernameInput'
+        document.getElementById('usernamePlaceholder').textContent = username;
+    }
+
+    // Initialize: Retrieve and display stored entries on page load
+    window.onload = function () {
+        // Retrieve entries from localStorage
+        const entries = JSON.parse(localStorage.getItem('chatEntries')) || [];
+
+        // Display entries or perform any other initialization
+        console.log('Stored chat entries:', entries);
+    };
+</script>
+
+
+</body>
+</html>
